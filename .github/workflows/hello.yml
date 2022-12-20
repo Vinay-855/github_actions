@@ -1,17 +1,22 @@
-name: first-workflow
+name: second-workflow
 
 on: [push]
 
 jobs:
-  build:
+  single-line:
 
     runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@v1
-    - name: Run a one-line script
-      run: echo Hello world from GitHub action learning!
-    - name: Run a multi-line script
-      run: |
-        echo Add other actions to build,
-        echo test, and deploy your project.
+    - name: Run a one-line job
+      run: echo Hello GitHub action learning from single-line!.
+  multi-line:
+     runs-on: ubuntu-latest
+     steps:
+       - name: Run a multi-line job
+         run: |
+          echo Add other actions to build,
+          echo Hello GitHub action learning from multi-line!.
+
+  
