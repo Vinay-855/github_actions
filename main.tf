@@ -9,7 +9,11 @@ terraform {
 }
 
 provider "aws" {
-  AWS_ACCESS_KEY_ID = ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY = ${{ secrets.AWS_SECRET_ID }}
   region = "us-east-1"
+}
+
+resource "github_actions_secret" "example_secret" {
+  repository       = " Vinay-855/github_actions"
+  secret_name      = "AWS_ACCESS_KEY_ID"
+  secret_name      = "AWS_SECRET_ACCESS_KEY"
 }
