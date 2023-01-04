@@ -1,22 +1,33 @@
-name: second-workflow
+name: Terraform-Plan-AWS-Infra
 
-on: [push]
+on: 
+  push:
+    branches:
+      - main
 
 jobs:
-  single-line:
-
+  terraform-configure:
+    name: terraform
     runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v1
-    - name: Run a one-line job
-      run: echo Hello GitHub action learning from single-line!.
-  multi-line:
-     runs-on: ubuntu-latest
-     steps:
-       - name: Run a multi-line job
-         run: |
-          echo Add other actions to build,
-          echo Hello GitHub action learning from multi-line!.
-
+    env:
+      AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ID }}
+      AWS_REGION: "us-east-1"
   
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup terraform
+        uses: hashicorp/setup-terraform@v1
+
+      - name: Terraform Init
+        id: Init
+        run: terraform init
+      
+      - name: Terraform Plan
+        id: plan
+        if: github.event_name == "push"
+        run: terraform plan  
+
+
