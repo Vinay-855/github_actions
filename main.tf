@@ -15,5 +15,4 @@ provider "aws" {
 resource "github_actions_secret" "example_secret" {
   repository       = " Vinay-855/github_actions"
   secret_name      = "AWS_ACCESS_KEY_ID"
-  secret_name      = "AWS_SECRET_ACCESS_KEY"
 }
