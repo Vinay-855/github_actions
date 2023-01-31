@@ -5,3 +5,8 @@ resource "aws_vpc" "customvpc" {
     "Name" = "Test-Custom-VPC"
   }
 }
+
+resource "aws_instance" "testEC2" {
+  ami           = "ami-0aa7d40eeae50c9a9"
+  instance_type = "t2.micro"
+}
