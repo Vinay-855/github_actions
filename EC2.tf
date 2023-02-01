@@ -3,7 +3,7 @@ resource "aws_vpc" "customvpc" {
 
   tags = {
     "Name" = "${var.app_name}-VPC"
-    "Environment" = "var.app_environment"
+    "Environment" = "${var.app_environment}"
   }
 }
 
